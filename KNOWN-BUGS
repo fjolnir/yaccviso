@@ -1,0 +1,25 @@
+LIST OF KNOWN BUGS:
+
+1) The following does not work:
+	#ifdef blabla
+	%}
+	#endif
+   Neither does:
+	#ifdef blabla
+	}
+	#endif
+   Neither does:
+	#ifdef blabla
+	{
+	#endif
+   But the following works:
+	#ifdef blabla
+	{ foobar }
+	#endif
+
+   In other words: these types of brackets must always be well formed within
+   a #ifdef environment.
+
+
+
+

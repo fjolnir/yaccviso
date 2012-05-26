@@ -1,0 +1,283 @@
+
+Makefile,14
+ifeq 41,1735
+
+dependencies.c,200
+int init_dep_tbl(44,2223
+unsigned int hashfunc(73,2955
+dep_tbl_entry* insert_gram_el(98,3703
+dep_tbl_bucket* append_bucket(187,7228
+dep_tbl_entry *lookup_gram_el(308,10658
+int pdeptbl(342,11465
+
+dependencies.h,533
+#define DEPENDENCIES_H2,23
+typedef struct dep_tbl_bucket dep_tbl_bucket;dep_tbl_bucket56,2757
+typedef struct dep_tbl_rbucket dep_tbl_rbucket;dep_tbl_rbucket57,2803
+typedef struct dep_tbl_entry dep_tbl_entry;dep_tbl_entry58,2851
+} gram_el_type;gram_el_type62,3027
+typedef int dep_class;dep_class64,3044
+typedef  char*     taction;taction66,3068
+typedef  int       ntid;ntid67,3122
+struct dep_tbl_bucket dep_tbl_bucket69,3148
+struct dep_tbl_rbucket dep_tbl_rbucket79,3637
+struct dep_tbl_entry dep_tbl_entry87,3927
+
+error.c,65
+int yyerror(82,3595
+void bailout(104,4082
+int pdebug(110,4157
+
+error.h,21
+#define ERROR_H2,16
+
+global.h,498
+#define GLOBAL_H2,17
+#define         OK 36,2068
+#define         ERROR 37,2102
+#define         TRUE 39,2137
+#define         FALSE 40,2171
+#define         DDEBUG 42,2206
+#define         DSCANDBG 43,2245
+#define         DPARSEDBG 44,2279
+#define         DSEMANALY 45,2313
+#define         DCODEGEN 46,2347
+#define         DSYMTAB 47,2381
+#define         DIO 48,2416
+#define         DWARNING 49,2451
+#define         DFATAL 50,2487
+#define		BUFMAX	52,2524
+#define         HASHMAX 53,2546
+
+globalvars.c,0
+
+header.txt,0
+
+main.c,60
+void usage(68,2891
+int chkargs(98,4105
+int main(226,6855
+
+malloc.c,90
+void *my_malloc(44,2361
+void my_free(77,3218
+int pmalloc(95,3643
+int cleanup(110,4027
+
+malloc.h,100
+#define MY_MALLOC_H2,20
+typedef struct memmap memmap;memmap32,1903
+struct memmap memmap34,1934
+
+scanner.h,95
+#define SCANNER_H2,18
+#define           CBUF 70,2930
+#define           CBUFGROWSIZE 71,2974
+
+scanner.l,0
+
+semanaly.c,637
+dep_tbl_entry *chkTSTARTYaccIdentifier(50,2575
+dep_tbl_entry *chkNmnoYaccIdentifier(69,3052
+dep_tbl_entry *chkNmnoCHARCONSTANT(108,4232
+int chkNmno(133,4836
+int chkRword(155,5403
+symentry *chkTag(187,6062
+int chkNlist(212,6688
+int chkUnionDeclar(237,7325
+int chkBisonDeclar(246,7473
+int chkCDeclar(304,8963
+int chkBisonDeclars(312,9088
+int chkDefsection(331,9417
+dep_tbl_bucket *chkRulebodyYaccIdentifier(349,9763
+int chkRulebody(385,10790
+int chkPrec(457,12957
+int chkProduction(465,13118
+int chkProductions(487,13786
+int chkRule(522,14969
+int chkRules(553,16074
+int chkRulesection(594,17283
+int semanaly(609,17561
+
+semanaly.h,24
+#define SEMANALY_H2,18
+
+symtab.c,175
+symtab *symcreate(104,4236
+int syminit(150,5444
+int symlookupLexem(172,6073
+int syminsertLexem(221,7433
+int     symprintSymtab(278,9089
+int symprintAllSymtabs(332,10652
+
+symtab.h,209
+#define SYMTAB_H2,17
+} symtype;symtype69,3508
+typedef struct symtab symtab;symtab71,3521
+typedef struct symentry symentry;symentry72,3551
+struct symentry symentry74,3586
+struct symtab symtab82,3825
+
+tree.c,165
+int 	inittree(60,1727
+node	*mkleaf(77,2247
+node	*mknode(114,3361
+int	appendchld(140,4123
+attrib *mkattrib(189,5476
+int appendattr(263,7007
+int ptree(287,7722
+
+tree.h,437
+#define TREE_H2,15
+typedef struct node node;node76,3234
+typedef struct childptr childptr;childptr77,3260
+typedef struct attrib attrib;attrib78,3294
+struct attrib attrib80,3325
+struct childptr childptr93,3479
+struct node node99,3625
+} nt_id_in_parse_tree;nt_id_in_parse_tree121,4616
+} attrib_type;attrib_type125,4735
+#define AYPROCDECL_SYMTAB	130,4872
+#define AYPROC_SYMTAB	131,4900
+#define AYPROCHEAD_SYMTAB	132,4925
+
+ui.c,3367
+void destroy_window 39,2107
+void button_window 45,2193
+void create_buttons 54,2367
+void create_toggle_buttons 193,7236
+void create_check_buttons 267,9464
+void create_radio_buttons 341,11687
+void bbox_widget_destroy 420,14116
+void create_bbox_window 424,14188
+void test_hbbox 493,16168
+void test_vbbox 501,16491
+void create_button_box 509,16819
+GtkWidget *new_pixmap 554,18188
+void set_toolbar_horizontal 570,18523
+void set_toolbar_vertical 575,18676
+void set_toolbar_icons 581,18830
+void set_toolbar_text 587,18965
+void set_toolbar_both 593,19104
+void set_toolbar_small_space 599,19236
+void set_toolbar_big_space 605,19365
+void set_toolbar_enable 611,19498
+void set_toolbar_disable 617,19625
+void create_toolbar 623,19755
+GtkWidget *make_toolbar 711,23273
+void create_handle_box 778,25923
+void reparent_label 827,27154
+void create_reparent 837,27347
+void create_about_window 942,30573
+void create_tooltips 1023,33215
+void create_panes(1110,36097
+void do_exit(1140,36830
+GtkWidget* create_file_menu(1146,36866
+GtkWidget* create_edit_menu(1189,38303
+GtkWidget* create_algorithms_menu(1206,38653
+GtkWidget* create_help_menu(1215,38760
+void create_menus(1241,39379
+void create_scrolled_windows 1306,41284
+void create_entry 1373,43357
+void list_add 1442,45300
+void list_remove 1455,45605
+void create_list 1485,46179
+void create_clist 1602,49628
+void color_selection_ok 1703,52376
+void color_selection_changed 1715,52680
+void create_color_selection 1725,52930
+void file_selection_ok 1783,54647
+create_file_selection 1790,54808
+void label_toggle 1826,55747
+void create_dialog 1844,56155
+void create_range_controls 1892,57505
+void create_rulers 1977,60078
+void create_text 2044,61913
+void rotate_notebook 2183,66831
+void create_notebook 2189,66973
+gboolean dnd_drop_destroy_popup 2306,70347
+void dnd_drop 2317,70628
+void dnd_drag_request 2365,72178
+void create_dnd 2371,72404
+typedef struct _cursoroffset _cursoroffset2499,76079
+typedef struct _cursoroffset {gint x,y;} CursorOffset;CursorOffset2499,76079
+static void shape_pressed 2501,76135
+static void shape_released 2516,76465
+static void shape_motion 2522,76571
+GtkWidget *shape_create_icon 2535,76887
+void create_shapes 2595,78557
+gint progress_timeout 2652,79871
+void destroy_progress 2666,80121
+void create_progress_bar 2674,80289
+gint color_idle_func 2738,82098
+void color_preview_destroy 2764,82503
+void create_color_preview 2773,82671
+gint gray_idle_func 2833,84095
+void gray_preview_destroy 2854,84430
+void create_gray_preview 2863,84594
+void selection_test_received 2916,85911
+void selection_test_get_targets 2965,86939
+void create_selection_test 2976,87235
+void create_gamma_curve 3055,89661
+static gint scroll_test_expose 3103,90883
+static void scroll_test_configure 3130,91597
+static void scroll_test_adjustment_changed 3139,91872
+void create_scroll_test 3215,93654
+void timeout_test 3291,95881
+void start_timeout_test 3300,96061
+void stop_timeout_test 3309,96232
+void destroy_timeout_test 3319,96378
+void create_timeout_test 3326,96527
+gint idle_test 3394,98553
+void start_idle_test 3405,98746
+void stop_idle_test 3414,98898
+void destroy_idle_test 3424,99032
+void create_idle_test 3431,99172
+void test_destroy 3492,101136
+void create_test 3503,101284
+void create_main_window 3536,101992
+int ui_main(3558,102546
+
+ui.h,18
+#define UI_H2,13
+
+vcg.c,371
+#define NO_DOT_BUG 48,2628
+struct idtab idtab68,3210
+const char *getstrIdtab(136,6229
+char *convString2vcg(147,6401
+int pnode(208,8244
+int pedge 224,8758
+int pvcg(232,8958
+int vcg(263,9554
+int pdepentry(299,10262
+int pdepvcg(329,11442
+int pdepdotentry_node(394,13202
+int pdepdotentry_edges(458,15318
+int pdepdotentry_simple(491,16381
+int pdepdot(526,17509
+
+vcg.h,19
+#define VCG_H2,14
+
+yaccviso.y,387
+spec 90,3400
+defsection 113,4169
+bisonDeclars 131,4815
+CDeclar 145,5339
+bisonDeclar 164,6040
+yaccIdentifier	230,8628
+unionDeclar 245,9136
+rword 267,9940
+tag 303,11341
+nlist 323,12068
+nmno 353,13183
+rulesection 392,14554
+rules 399,14786
+rule 423,15622
+productions	435,16019
+production	457,16747
+rulebody 467,17068
+prec 507,18512
+action 544,19831
+tailsection 570,20797

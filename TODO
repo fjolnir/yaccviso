@@ -1,0 +1,79 @@
+===============================================================
+===============================================================
+
+ THIS FILE IS IN GERMAN AND IS ONLY USED FOR INTERNAL PURPOSES. 
+
+===============================================================
+===============================================================
+
+README file
+OK
+
+'{', '<', ',', '|', ';' etc. raus aus yaccviso.y, ersetzen durch sprechende 
+  tokennamen
+OK
+
+passende semantische Werte fuer CCODE, TIDENT, TNT, TNTLHS, TNUM, 
+  CHARCONSTANT, STRING_LITERAL
+OK -> alle sind symptrs auszer CCODE (hat actionptr)
+
+appendchld anpassen
+OK
+
+tree.[ch] ansehen
+OK
+
+ueberall wo CCODE vorkommt, sehen, ob richtig verwendet wurde
+OK
+
+ueberall wo {{ vorkommt, checken, ob }} schlieszend vorhanden
+OK
+
+ueberall ueberpruefen bei appendchld(), ob bei einem mkleaf $x gemacht wurde
+  und es nur ueber das leaf appendchld gemacht wird und nicht ueber $x
+OK
+
+schauen, wo sich was aendert durch ersetzen der #define YPROGxxx durch
+  enums
+~OK -> code section wurde rausgeworfen, wo es verwendet wurde (ptree).
+
+remove procstuff von symtab.[ch]
+OK
+
+symcreate(), inittree() in main() eingliedern
+OK
+
+symtabentries, actions nicht im Baum -> fix!!!
+OK, fixed
+
+ntids worden nicht als text in pvcg() dargestellt -> fix!!!
+OK, fixed
+
+symtype in symboltab eintragen
+  -> still check:  
+NEIN, geht nicht. Wieder raus aus yaccviso.y (OK).
+  Wir muesen ueber semanaly gehen.
+OK
+
+semanaly.[ch] wieder raus?
+NEIN. -> Implementieren!
+OK
+
+
+in semanaly musz geprueft werden, dasz:
+    TNTLHS rulebody prec
+    TNTLHS rulebody prec
+    TNTLHS rulebody prec
+    TNTLHS rulebody prec
+    | rulebody prec ;
+nicht vorkommen kann.
+OK
+
+CHAR constants werden bei append_bucket nicht gehandhabt.
+OK
+
+Self edges in depgraph.dot verbessern.
+
+Code neu strukturieren.
+
+

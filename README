@@ -1,0 +1,176 @@
+/*---------------------------------------------------------------------------*/
+/* YaccViso - a tool for visualizing dependencies of nonterminals in a yacc  */
+/*            grammar file                                                   */
+/* Copyright (C) 1997  Leon Aaron Kaplan, email: e9325704@stud1.tuwien.ac.at */
+/* This program is free software; you can redistribute it and/or modify      */
+/* it under the terms of the GNU General Public License as published by      */
+/* the Free Software Foundation; either version 2 of the License, or         */
+/* (at your option) any later version.                                       */
+/*                                                                           */
+/* This program is distributed in the hope that it will be useful,           */
+/* but WITHOUT ANY WARRANTY; without even the implied warranty of            */
+/* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             */
+/* GNU General Public License for more details.                              */
+/*                                                                           */
+/* You should have received a copy of the GNU General Public License         */
+/* along with this program; if not, write to the Free Software               */
+/* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.                 */
+/* ----------------------------------------------- end of legal stuff ------ */
+
+/* file:        README                                                  
+ * YACCVISO                                                                  
+ * author:      Leon Aaron Kaplan, e9325704@student.tuwien.ac.at 
+ * date:                                                                     
+ * last mod.:                                                                
+ * descr.:                                                                   
+ */
+
+
+TABLE OF CONTENTS
+=================
+
+ 1. COPYRIGHT
+ 2. What is YaccViso
+ 3. Why YaccViso
+ 4. Requirements
+ 5. Where to obtain YaccViso
+ 6. Installation
+ 7. Documentation
+ 8. Systems On Which Yaccviso Was Tested
+
+
+1. COPYRIGHT
+=============
+
+This product is copylefted by the GNU General Public License (GPL).
+You should have received a copy of the GPL along with this program.  It
+is in the file COPYRIGHT.
+
+
+2. WHAT IS YACCVISO?
+====================
+
+Note: throughout this file when I refer to "yacc" I mean both yacc and 
+bison.
+
+YaccViso is a tool for visualizing dependencies of non terminal and
+terminal symbols in a yacc grammar. If you do not know what yacc is
+then you probably won't need YaccViso. It is thus a tool specifically
+designed for people who write compilers with yacc who work on large
+grammar files.
+
+YaccViso will take a yacc or bison file, parse it and produce two
+dependency graphs: one which can be visualized using VCG[1] and one
+which can be visualized using dot[2].
+
+What do I mean by dependency?
+
+If you have a yacc file of the form:
+
+ %%
+ start        	: declarations code 
+		;
+ declarations 	: declarations declaration
+		;
+ code         	: code statement
+		; 
+ .
+ .
+ .
+ %% 
+
+then YaccViso will generate a directed graph in which there are
+directed edges from "start" to "declarations" and "code", etc. In
+other words: the rule "start" depends upon "declarations" and "code"
+
+
+3. WHY YACCVISO?
+================
+
+If you have ever written a large grammar such as the grammar for ANSI
+C with more than 50 productions then you will have noticed that it
+isn't easy to keep track on each terminal or non terminal symbol, what
+it does etc. In such a case I recommend using YaccViso and printing
+your dependency graph of your grammar as a huge poster so that you
+have a handy reference.
+
+What's more: as YaccViso generates an easily parsable output of a
+directed graph, all the standard algorithms can be applied to this
+graph and questions such as "which grammar symbol is used in only one
+context and in which context?" can be answered automatically.  We plan
+to incorporate some of these algorithms into YaccViso when time
+permits.
+
+
+4. REQUIREMENTS
+===============
+
+YaccViso should be compilable on any UN*X system which has:
+ * bison or yacc (tested on both)
+ * flex 2.5.4 or higher
+ * GNU make (See Note gmake)
+ * GNU C compiler (gcc). 
+
+The Code should be highly portable except for the flex file.
+I seldomly used any system specific calls except malloc, free, fprintf and
+exit.
+
+In addition you will need one or more of:
+ 1. VCG ("Visualization of compiler graphs") by Georg Sander
+    obtainable at:
+	ftp://ftp.cs.uni-sb-de/pub/graphics/vcg
+
+ 2. the graphviz package (contains dot, lefty, neato, dotty) by AT&T
+    obtainable at:
+	http://www.research.att.com:80/~north/graphviz/
+
+For the actual visualization. I highly recommend using dot as it produces
+a more aesthetic layout and as it is faster than VCG.
+
+
+NOTE gmake:
+
+The Makefile uses a few lines of conditionals. It was found that these
+won't work on BSD make and OSF/1 make. Use GNU make (gmake) instead or
+look at the Makefile and adapt it (it is a small Makefile) and remove
+theses conditionals.
+
+
+5. WHERE TO OBTAIN YACCVISO?
+============================
+
+Get it from my Web page: http://mars.tuwien.ac.at/~jjl or request it
+via email: lkaplan@mips.complang.tuwien.ac.at or jjl@mars.tuwien.ac.at.
+
+
+6. INSTALLATION
+===============
+
+ 1) make a unique temporary directory
+ 2) copy the .tgz file into that directory
+ 3) ungzip it and untar it. Now you should have a directory structure
+    like tmpdir
+         |- README (this file)
+         |- src/
+         |- misc/
+         |- doc/
+         |- examples/
+
+ 4) Go into the directory src/ and type "gmake"
+ 5) ignore any warnings
+ 6) you should have an executable "yaccviso". Take it and copy it to any
+    location that you want to have it.
+
+
+7. DOCUMENTATION
+================
+
+The documentation in the directory doc/ is far from complete. It gives
+some insight however. 
+
+
+8. SYSTEMS ON WHICH YACCVISO WAS TESTED
+=======================================
+
+Redhat Linux 4.2, Pentium 166
+DEC OSF/1, DEC Alpha

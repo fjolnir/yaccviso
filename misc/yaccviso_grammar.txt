@@ -1,0 +1,121 @@
+This is the Grammar for yaccviso. All actions have been removed.
+In total 50 non terminal and terminal symboly
+
+%token <symptr> TNUM		/* various numbers in C (float, hex, ...) */
+%token <symptr> CHARCONSTANT 
+%token <symptr> STRING_LITERAL
+%token <ccode> CCODE 
+
+%token <symptr> TIDENT			/* generic identifier */
+%token <symptr> TNT			/* non-terminals, like TIDENT,
+					   but can also have a '.' */
+%token <symptr> TNTLHS			/* non terminal left hand side */
+%token TLEFT				/* "%left" */
+%token TRIGHT				/* "%right" */
+%token TNONASSOC			/* "%nonassoc" */
+%token TTOKEN				/* "%token" */
+%token TPREC				/* "%prec" */
+%token TTYPE				/* "%type" */
+%token TSTART				/* "%start" */
+%token TUNION				/* "%union" */
+%token TPURE_PARSER			/* "%pure_parser" */
+%token TSEMANTIC_PARSER			/* "%semantic_parser" */
+%token TEXPECT				/* "%expect" */
+%token TTHONG				/* "%thong" */
+%token TMARK				/* The %% mark */
+%token TLCURL				/* The %{ mark */
+%token TRCURL				/* The %} mark */
+%token TSEMICOL				/* ';' */
+%token TPIPE				/* '|' */
+%token TOPENBRACES			/* '{' */
+%token TCLOSEBRACES			/* '}' */
+%token TLT				/* '<' */
+%token TGT				/* '>' */
+%token TCOMMA				/* ',' */
+%token TEPSILON				/* empty string. Used for empty prods*/
+
+
+
+%type <nptr> spec defsection bisonDeclars CDeclar bisonDeclar
+%type <nptr> yaccIdentifier unionDeclar rword tag nlist nmno 
+%type <nptr> rulesection rules rule productions production 
+%type <nptr> rulebody prec action tailsection
+
+%start spec
+/* ------------ End Bison declarations                                     */
+
+
+%%
+spec            : defsection TMARK rulesection TMARK tailsection
+                ;
+defsection      : /* empty */ 
+		| defsection bisonDeclars
+                ;
+bisonDeclars    : bisonDeclar
+		| CDeclar 
+                ;
+CDeclar         : TLCURL CCODE TRCURL 
+                ;
+bisonDeclar     : TSTART yaccIdentifier
+                | unionDeclar
+                | TPURE_PARSER
+                | TSEMANTIC_PARSER
+                | TEXPECT TNUM
+                | TTHONG
+                | rword tag nlist
+                ;
+yaccIdentifier	: TIDENT
+		| TNT
+		;
+unionDeclar     : TUNION TOPENBRACES CCODE TCLOSEBRACES
+		;
+rword           : TTOKEN
+                | TLEFT
+                | TRIGHT
+                | TNONASSOC
+                | TTYPE
+                ;
+tag             : TLT TIDENT TGT
+                | /* empty */
+                ;
+nlist           : nmno
+                | nlist nmno
+                | nlist TCOMMA nmno
+                ;
+nmno            : yaccIdentifier
+                | yaccIdentifier TNUM
+                ;
+rulesection     : rules
+                ;
+rules           : rule TSEMICOL		/* each rule is terminated by ';' */
+                | rules rule TSEMICOL
+                ;
+rule            : TNTLHS productions /* a rule can consist of >=1  lines */
+		;
+productions	: production
+		| productions TPIPE production
+		;
+production	: rulebody prec 
+                ;
+rulebody        : action
+                | rulebody yaccIdentifier action
+                | rulebody CHARCONSTANT action
+		| rulebody STRING_LITERAL action 
+		  /* not done. extension for bison */
+                ;
+prec            : /* empty */
+                | TPREC yaccIdentifier action
+                | 
+                ;
+action          : /* empty */
+		| TOPENBRACES CCODE TCLOSEBRACES
+                ;
+
+
+
+
+
+
+
+
+

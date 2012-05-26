@@ -1,0 +1,10 @@
+This directory conatins an example.
+
+
+ansic.y                      Yacc Grammar for an ANSI C compiler
+depgraph.dot                 yaccviso dot(1) output for yaccviso's parser.y file itself 
+depgraph.dot.ps              postscript dot(1) output file for ansi.y
+depgraph.vcg                 yaccviso VCG output for parser.y
+depgraph.vcg.ps              postscript VCG output file for depgraph.vcg in
+                             poster format. Print the pages and make a 
+                             poster out of them.

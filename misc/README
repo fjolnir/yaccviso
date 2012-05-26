@@ -1,0 +1,12 @@
+This Directory contains miscellanous stuff.
+
+
+c.l                      original grammar for parsing yacc that I used
+c.y                      original grammar for parsing yacc that I used
+primes                   linux executable: prime number generating program
+primes.c                 the source code for primes. Very slow, very
+                         inefficent. I only needed it for finding a 
+                         suitable prime number for a hash table in yaccviso.
+primestable.txt          output of primes
+yaccviso_grammar.txt     The current grammar for yaccviso. Stripped of all
+                         actions but otherwise identical to ../src/yaccviso.y

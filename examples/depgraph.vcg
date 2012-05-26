@@ -1,0 +1,702 @@
+graph: {
+	title: "Dependencies in yaccviso.y"
+	splines: yes
+	display_edge_labels: no
+	node: {	title: "TGT"
+		label: "TGT"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TLT"
+		label: "TLT"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TNT"
+		label: "TNT"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "tag"
+		label: "tag"
+		/* number of buckets = 3 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "tag"
+		targetname: "TLT"
+		label: " expect = \fi034expecting identifier\fi034; "
+		class: 1
+	}
+	edge: {	sourcename: "tag"
+		targetname: "TIDENT"
+		label: " expect = \fi034expecting '>'\fi034; "
+		class: 1
+	}
+	edge: {	sourcename: "tag"
+		targetname: "TGT"
+		label: "{ node *tmpptr1 = mknode(tag);\n                     node *tmpptr2 = mkleaf(TLT, NULL, NULL); \n                     node *tmpptr3 = mkleaf(TIDENT, $3, NULL);\n                     node *tmpptr4 = mkleaf(TGT, NULL, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     appendchld(tmpptr1, tmpptr3);\n                     appendchld(tmpptr1, tmpptr4);\n                     $$ = tmpptr1;\n                     pdebug(DPARSEDBG, \fi034matched tag - '<' TIDENT '>'\fi034); \n                     expect = \fi034expecting list of identifiers\fi034; }"
+		class: 1
+	}
+	node: {	title: "TNUM"
+		label: "TNUM"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "spec"
+		label: "spec"
+		/* number of buckets = 5 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "spec"
+		targetname: "defsection"
+		label: " expect = \fi034expecting \fi092\fi037\fi092\fi037\fi034; "
+		class: 1
+	}
+	edge: {	sourcename: "spec"
+		targetname: "TMARK"
+		label: " expect = \fi034expecting one or more productions\fi034; "
+		class: 1
+	}
+	edge: {	sourcename: "spec"
+		targetname: "rulesection"
+		label: " expect = \fi034expecting \fi092\fi037\fi092\fi037 or non terminal on LHS\fi034; "
+		class: 1
+	}
+	edge: {	sourcename: "spec"
+		targetname: "TMARK"
+		label: " expect = \fi034expecting tailsection\fi034;\n                     bInTailSection = TRUE; "
+		class: 1
+	}
+	edge: {	sourcename: "spec"
+		targetname: "tailsection"
+		label: "{ node *tmpptr1 = mknode(spec);\n                     node *tmpptr2 = mkleaf(TMARK, NULL, NULL); \n                     node *tmpptr3 = mkleaf(TMARK, NULL, NULL); \n                     appendchld(tmpptr1, $1);\n                     appendchld(tmpptr1, tmpptr2);\n                     appendchld(tmpptr1, $5);\n                     appendchld(tmpptr1, tmpptr3);\n                     appendchld(tmpptr1, $9);\n                     $$ = tmpptr1;\n                     tree = $$; \n                     expect = \fi034expecting EOF\fi034; \n                     pdebug(DPARSEDBG,\fi034matched spec - EVERYTHING MATCHED :)\fi034);}"
+		class: 1
+	}
+	node: {	title: "prec"
+		label: "prec"
+		/* number of buckets = 6 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "prec"
+		targetname: "TPREC"
+		label: " expect = \fi034expecting identifier\fi034; "
+		class: 2
+	}
+	edge: {	sourcename: "prec"
+		targetname: "yaccIdentifier"
+		label: " expect = \fi034expecting action or '|' or ';'\fi034; "
+		class: 2
+	}
+	edge: {	sourcename: "prec"
+		targetname: "action"
+		label: "{ node *tmpptr1 = mknode(prec);\n                     node *tmpptr2 = mkleaf(TPREC, NULL, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     appendchld(tmpptr1, $3);\n                     appendchld(tmpptr1, $5);\n                     $$ = tmpptr1;\n                     pdebug(DPARSEDBG, \fi034matched prec - \fi034\n                        \fi034TPREC yaccIdentifier action\fi034); \n                     expect = \fi034expecting '|' or ';' \fi034; }"
+		class: 2
+	}
+	edge: {	sourcename: "prec"
+		targetname: "TPREC"
+		label: " expect = \fi034expecting character constant\fi034; "
+		class: 3
+	}
+	edge: {	sourcename: "prec"
+		targetname: "CHARCONSTANT"
+		label: " expect = \fi034expecting action or '|' or ';'\fi034; "
+		class: 3
+	}
+	edge: {	sourcename: "prec"
+		targetname: "action"
+		label: "{ node *tmpptr1 = mknode(prec);\n                     node *tmpptr2 = mkleaf(TPREC, NULL, NULL);\n                     node *tmpptr3 = mkleaf(CHARCONSTANT, $3, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     appendchld(tmpptr1, tmpptr3);\n                     appendchld(tmpptr1, $5);\n                     $$ = tmpptr1;\n                     pdebug(DPARSEDBG, \fi034matched prec - \fi034\n                        \fi034TPREC CHARCONSTANT action\fi034); \n                     expect = \fi034expecting '|' or ';' \fi034; }"
+		class: 3
+	}
+	node: {	title: "rule"
+		label: "rule"
+		/* number of buckets = 2 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "rule"
+		targetname: "TNTLHS"
+		label: " expect = \fi034expecting body of rule\fi034; "
+		class: 1
+	}
+	edge: {	sourcename: "rule"
+		targetname: "productions"
+		label: "{ node *tmpptr1 = mknode(rule);\n                     node *tmpptr2 = mkleaf(TNTLHS, $1, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     appendchld(tmpptr1, $3);\n                     $$ = tmpptr1;\n                     pdebug(DPARSEDBG, \fi034matched rule - TNTLHS \fi034\n                                       \fi034rulebody prec\fi034); \n                     expect = \fi034expecting ';'\fi034; }"
+		class: 1
+	}
+	node: {	title: "nmno"
+		label: "nmno"
+		/* number of buckets = 6 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "nmno"
+		targetname: "yaccIdentifier"
+		label: "{ node *tmpptr = mknode(nmno);\n                     appendchld(tmpptr, $1);\n                     $$ = tmpptr;\n                     pdebug(DPARSEDBG, \fi034matched nmno - yaccIdentifier\fi034); \n                     expect = \fi034\fi034; }"
+		class: 1
+	}
+	edge: {	sourcename: "nmno"
+		targetname: "yaccIdentifier"
+		label: " expect = \fi034expecting number\fi034; "
+		class: 2
+	}
+	edge: {	sourcename: "nmno"
+		targetname: "TNUM"
+		label: "{ node *tmpptr1 = mknode(nmno);\n                     node *tmpptr2 = mkleaf(TNUM, $3, NULL);\n                     appendchld(tmpptr1, $1);\n                     appendchld(tmpptr1, tmpptr2);\n                     $$ = tmpptr1;\n                     $3->type = symtype_tnum;\n                     pdebug(DPARSEDBG, \fi034matched nmno - yaccIdentifier TNUM\fi034); \n                     expect = \fi034\fi034; }"
+		class: 2
+	}
+	edge: {	sourcename: "nmno"
+		targetname: "CHARCONSTANT"
+		label: "{ node *tmpptr1 = mknode(nmno);\n                     node *tmpptr2 = mkleaf(CHARCONSTANT, $1, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     $$ = tmpptr1;\n                     $1->type = symtype_charconstant;\n                     pdebug(DPARSEDBG, \fi034matched nmno - CHARCONSTANT\fi034); \n                     expect = \fi034\fi034; }"
+		class: 3
+	}
+	edge: {	sourcename: "nmno"
+		targetname: "CHARCONSTANT"
+		label: " expect = \fi034expecting number\fi034; "
+		class: 4
+	}
+	edge: {	sourcename: "nmno"
+		targetname: "TNUM"
+		label: "{ node *tmpptr1 = mknode(nmno);\n                     node *tmpptr2 = mkleaf(CHARCONSTANT, $1, NULL);\n                     node *tmpptr3 = mkleaf(TNUM, $3, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     appendchld(tmpptr1, tmpptr3);\n                     $$ = tmpptr1;\n                     $1->type = symtype_charconstant;\n                     $3->type = symtype_tnum;\n                     pdebug(DPARSEDBG, \fi034matched nmno - yaccIdentifier TNUM\fi034); \n                     expect = \fi034\fi034; }"
+		class: 4
+	}
+	node: {	title: "CCODE"
+		label: "CCODE"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TPREC"
+		label: "TPREC"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TPIPE"
+		label: "TPIPE"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TMARK"
+		label: "TMARK"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TLEFT"
+		label: "TLEFT"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TTYPE"
+		label: "TTYPE"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "rword"
+		label: "rword"
+		/* number of buckets = 5 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "rword"
+		targetname: "TTOKEN"
+		label: "{ node *tmpptr1 = mknode(rword);\n                     node *tmpptr2 = mkleaf(TTOKEN, NULL, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     $$ = tmpptr1; \n                     pdebug(DPARSEDBG, \fi034matched rword - TTOKEN\fi034); \n                     expect = \fi034expecting TLT or identifier\fi034; }"
+		class: 1
+	}
+	edge: {	sourcename: "rword"
+		targetname: "TLEFT"
+		label: "{ node *tmpptr1 = mknode(rword);\n                     node *tmpptr2 = mkleaf(TLEFT, NULL, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     $$ = tmpptr1; \n                     pdebug(DPARSEDBG, \fi034matched rword - TLEFT\fi034); \n                     expect = \fi034expecting TLT or identifier\fi034; }"
+		class: 2
+	}
+	edge: {	sourcename: "rword"
+		targetname: "TRIGHT"
+		label: "{ node *tmpptr1 = mknode(rword);\n                     node *tmpptr2 = mkleaf(TRIGHT, NULL, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     $$ = tmpptr1; \n                     pdebug(DPARSEDBG, \fi034matched rword - TRIGHT\fi034); \n                     expect = \fi034expecting TLT or identifier\fi034; }"
+		class: 3
+	}
+	edge: {	sourcename: "rword"
+		targetname: "TNONASSOC"
+		label: "{ node *tmpptr1 = mknode(rword);\n                     node *tmpptr2 = mkleaf(TNONASSOC, NULL, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     $$ = tmpptr1; \n                     pdebug(DPARSEDBG, \fi034matched rword - TNONASSOC\fi034); \n                     expect = \fi034expecting TLT or identifier\fi034; }"
+		class: 4
+	}
+	edge: {	sourcename: "rword"
+		targetname: "TTYPE"
+		label: "{ node *tmpptr1 = mknode(rword);\n                     node *tmpptr2 = mkleaf(TTYPE, NULL, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     $$ = tmpptr1; \n                     pdebug(DPARSEDBG, \fi034matched rword - TTYPE\fi034); \n                     expect = \fi034expecting TLT or identifier\fi034; }"
+		class: 5
+	}
+	node: {	title: "TCOMMA"
+		label: "TCOMMA"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "rules"
+		label: "rules"
+		/* number of buckets = 5 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "rules"
+		targetname: "rule"
+		label: " expect = \fi034expecting ';'\fi034; "
+		class: 1
+	}
+	edge: {	sourcename: "rules"
+		targetname: "TSEMICOL"
+		label: "{ node *tmpptr1 = mknode(rules);\n                     node *tmpptr2 = mkleaf(TSEMICOL, NULL, NULL);\n                     appendchld(tmpptr1, $1);\n                     appendchld(tmpptr1, tmpptr2);\n                     $$ = tmpptr1;\n                     pdebug(DPARSEDBG, \fi034matched rules - rule TSEMICOL\fi034); \n                     expect = \fi034expecting another rule or \fi092\fi037\fi092\fi037\fi034; }"
+		class: 1
+	}
+	edge: {	sourcename: "rules"
+		targetname: "rules"
+		label: " expect = \fi034expecting rule\fi034; "
+		class: 2
+	}
+	edge: {	sourcename: "rules"
+		targetname: "rule"
+		label: " expect = \fi034expecting ';'\fi034; "
+		class: 2
+	}
+	edge: {	sourcename: "rules"
+		targetname: "TSEMICOL"
+		label: "{ node *tmpptr1 = mknode(rules);\n                     node *tmpptr2 = mkleaf(TSEMICOL, NULL, NULL);\n                     appendchld(tmpptr1, $1);\n                     appendchld(tmpptr1, $3);\n                     appendchld(tmpptr1, tmpptr2); \n                     $$ = tmpptr1;\n                     pdebug(DPARSEDBG, \fi034matched rules - rules rule TSEMICOL\fi034); \n                     expect = \fi034expecting another rule or \fi092\fi037\fi092\fi037\fi034; }"
+		class: 2
+	}
+	node: {	title: "nlist"
+		label: "nlist"
+		/* number of buckets = 6 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "nlist"
+		targetname: "nmno"
+		label: "{ node *tmpptr = mknode(nlist);\n                     appendchld(tmpptr, $1);\n                     $$ = tmpptr;\n                     pdebug(DPARSEDBG, \fi034matched nlist - nmno\fi034); \n                     expect = \fi034expecting a yacc declaration or \fi092\fi037{ or \fi034\n                              \fi034\fi092\fi037\fi092\fi037 or another identifier or number\fi034; }"
+		class: 1
+	}
+	edge: {	sourcename: "nlist"
+		targetname: "nlist"
+		label: " expect = \fi034expecting identifier or number\fi034; "
+		class: 2
+	}
+	edge: {	sourcename: "nlist"
+		targetname: "nmno"
+		label: "{ node *tmpptr = mknode(nlist);\n                     appendchld(tmpptr, $1);\n                     appendchld(tmpptr, $3);\n                     $$ = tmpptr;\n                     pdebug(DPARSEDBG, \fi034matched nlist - nlist nmno\fi034); \n                     expect = \fi034expecting a yacc declaration or \fi092\fi037{ or \fi034\n                              \fi034\fi092\fi037\fi092\fi037 or another identifier or number\fi034; }"
+		class: 2
+	}
+	edge: {	sourcename: "nlist"
+		targetname: "nlist"
+		label: " expect = \fi034expecting ','\fi034; "
+		class: 3
+	}
+	edge: {	sourcename: "nlist"
+		targetname: "TCOMMA"
+		label: " expect = \fi034expecting identifier or number\fi034; "
+		class: 3
+	}
+	edge: {	sourcename: "nlist"
+		targetname: "nmno"
+		label: "{ node *tmpptr = mknode(nlist);\n                     appendchld(tmpptr, $1);\n                     appendchld(tmpptr, $5);    \n                     $$ = tmpptr;\n                     pdebug(DPARSEDBG, \fi034matched nlist - nlist TCOMMA nmno\fi034); \n                     expect = \fi034expecting a yacc declaration or \fi092\fi037{ or \fi034\n                              \fi034\fi092\fi037\fi092\fi037 or another identifier or number\fi034; }"
+		class: 3
+	}
+	node: {	title: "TTHONG"
+		label: "TTHONG"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TTOKEN"
+		label: "TTOKEN"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TIDENT"
+		label: "TIDENT"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TRIGHT"
+		label: "TRIGHT"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TUNION"
+		label: "TUNION"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TLCURL"
+		label: "TLCURL"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TNTLHS"
+		label: "TNTLHS"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TRCURL"
+		label: "TRCURL"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TSTART"
+		label: "TSTART"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TEXPECT"
+		label: "TEXPECT"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "action"
+		label: "action"
+		/* number of buckets = 3 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "action"
+		targetname: "TOPENBRACES"
+		label: "  \n                     bSkipC = TRUE; "
+		class: 2
+	}
+	edge: {	sourcename: "action"
+		targetname: "CCODE"
+		label: " expect = \fi034expecting '}'\fi034;              \n                     bSkipC = FALSE; "
+		class: 2
+	}
+	edge: {	sourcename: "action"
+		targetname: "TCLOSEBRACES"
+		label: "{ node *tmpptr1 = mknode(action);\n                     node *tmpptr2 = mkleaf(TOPENBRACES, NULL, NULL);\n                     node *tmpptr3 = mkleaf(CCODE, NULL, $3);\n                     node *tmpptr4 = mkleaf(TCLOSEBRACES, NULL, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     appendchld(tmpptr1, tmpptr3);\n                     appendchld(tmpptr1, tmpptr4);\n                     $$ = tmpptr1;\n                             pdebug(DPARSEDBG, \fi034matched action - \fi034\n                                       \fi034TOPENBRACES CCode TCLOSEBRACES\fi034); \n                     expect = \fi034expecting end or continuation of rule\fi034; }"
+		class: 2
+	}
+	node: {	title: "TSEMICOL"
+		label: "TSEMICOL"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "CDeclar"
+		label: "CDeclar"
+		/* number of buckets = 3 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "CDeclar"
+		targetname: "TLCURL"
+		label: " expect = \fi034expecting ANSI C Code\fi034; \n                     bSkipC = TRUE; bInCDeclar = TRUE; "
+		class: 1
+	}
+	edge: {	sourcename: "CDeclar"
+		targetname: "CCODE"
+		label: " expect = \fi034expecting \fi092\fi037}\fi034;  \n                   bSkipC = FALSE; bInCDeclar = FALSE; "
+		class: 1
+	}
+	edge: {	sourcename: "CDeclar"
+		targetname: "TRCURL"
+		label: "{ node *tmpptr1 = mknode(CDeclar);\n                     node *tmpptr2 = mkleaf(TLCURL, NULL, NULL);\n                     node *tmpptr3 = mkleaf(CCODE, NULL, $3);\n                     node *tmpptr4 = mkleaf(TRCURL, NULL, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     appendchld(tmpptr1, tmpptr3);\n                     appendchld(tmpptr1, tmpptr4);\n                     $$ = tmpptr1;\n                     expect = \fi034expecting a yacc declaration or \fi092\fi037{ or \fi092\fi037\fi092\fi037\fi034;\n                     pdebug(DPARSEDBG, \fi034matched CDeclar - TLCURL CCode \fi034\n                                       \fi034TRCURL\fi034); }"
+		class: 1
+	}
+	node: {	title: "TEPSILON"
+		label: "TEPSILON"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TNONASSOC"
+		label: "TNONASSOC"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "rulebody"
+		label: "rulebody"
+		/* number of buckets = 7 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "rulebody"
+		targetname: "action"
+		label: "{ node *tmpptr = mknode(rulebody);\n                     appendchld(tmpptr, $1);\n                     $$ = tmpptr;\n                     pdebug(DPARSEDBG, \fi034matched rulebody - action\fi034);\n                     expect = \fi034expecting identifier, character constant,  \fi034\n                              \fi034\fi092\fi034\fi037prec\fi092\fi034 or ';'\fi034; }"
+		class: 1
+	}
+	edge: {	sourcename: "rulebody"
+		targetname: "rulebody"
+		label: " expect = \fi034expecting identifier\fi034; "
+		class: 2
+	}
+	edge: {	sourcename: "rulebody"
+		targetname: "yaccIdentifier"
+		label: " expect = \fi034expecting identifier, '|', ';', action or \fi034\n                              \fi034\fi092\fi034\fi037prec\fi092\fi034\fi034; "
+		class: 2
+	}
+	edge: {	sourcename: "rulebody"
+		targetname: "action"
+		label: "{ node *tmpptr = mknode(rulebody);\n                     appendchld(tmpptr, $1);\n                     appendchld(tmpptr, $3);\n                     appendchld(tmpptr, $5);\n                     $$ = tmpptr;\n                     pdebug(DPARSEDBG, \fi034matched rulebody - rulebody \fi034\n                                       \fi034yaccIdentifier action\fi034); \n                     expect = \fi034expecting identifier, character constant,  \fi034\n                              \fi034\fi092\fi034\fi037prec\fi092\fi034 or ';'\fi034; }"
+		class: 2
+	}
+	edge: {	sourcename: "rulebody"
+		targetname: "rulebody"
+		label: " expect = \fi034expecting character constant\fi034; "
+		class: 3
+	}
+	edge: {	sourcename: "rulebody"
+		targetname: "CHARCONSTANT"
+		label: " expect = \fi034expecting identifier, '|', ';', action or \fi034\n                              \fi034\fi092\fi034\fi037prec\fi092\fi034\fi034; "
+		class: 3
+	}
+	edge: {	sourcename: "rulebody"
+		targetname: "action"
+		label: "{ node *tmpptr1 = mknode(rulebody);\n                     node *tmpptr2 = mkleaf(CHARCONSTANT, $3, NULL);\n                     appendchld(tmpptr1, $1);\n                     appendchld(tmpptr1, tmpptr2);\n                     appendchld(tmpptr1, $5);\n                     $$ = tmpptr1;\n                     $3->type = symtype_charconstant;\n                     pdebug(DPARSEDBG, \fi034matched rulebody - rulebody \fi034\n                                       \fi034CHARCONSTANT action\fi034); \n                     expect = \fi034expecting identifier, character constant,  \fi034\n                              \fi034\fi092\fi034\fi037prec\fi092\fi034 or ';'\fi034; }"
+		class: 3
+	}
+	node: {	title: "TOPENBRACES"
+		label: "TOPENBRACES"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TCLOSEBRACES"
+		label: "TCLOSEBRACES"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "defsection"
+		label: "defsection"
+		/* number of buckets = 2 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "defsection"
+		targetname: "defsection"
+		label: " expect = \fi034expecting a yacc declaration\fi034; "
+		class: 2
+	}
+	edge: {	sourcename: "defsection"
+		targetname: "bisonDeclars"
+		label: "{ node *tmpptr = mknode(defsection);\n                     appendchld(tmpptr, $1);\n                     appendchld(tmpptr, $3);\n                     $$ = tmpptr; \n                     expect = \fi034expecting a yacc declaration or \fi092\fi037{ or \fi092\fi037\fi092\fi037\fi034;\n                     pdebug(DPARSEDBG, \fi034matched defsection - defsection \fi034\n                                       \fi034bisonDeclars\fi034); }"
+		class: 2
+	}
+	node: {	title: "production"
+		label: "production"
+		/* number of buckets = 2 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "production"
+		targetname: "rulebody"
+		label: " expect = \fi034expecting \fi092\fi034\fi037prec\fi092\fi034, '|' or ';'\fi034; "
+		class: 1
+	}
+	edge: {	sourcename: "production"
+		targetname: "prec"
+		label: "{ node *tmpptr = mknode(production);\n                     appendchld(tmpptr, $1);\n                     appendchld(tmpptr, $3);\n                     $$ = tmpptr;\n                     pdebug(DPARSEDBG, \fi034matched production - rulebody prec\fi034);\n                     expect = \fi034expecting '|' or ';'\fi034; }"
+		class: 1
+	}
+	node: {	title: "CHARCONSTANT"
+		label: "CHARCONSTANT"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TPURE_PARSER"
+		label: "TPURE_PARSER"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "unionDeclar"
+		label: "unionDeclar"
+		/* number of buckets = 4 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "unionDeclar"
+		targetname: "TUNION"
+		label: " expect = \fi034expecting TOPENBRACES\fi034; "
+		class: 1
+	}
+	edge: {	sourcename: "unionDeclar"
+		targetname: "TOPENBRACES"
+		label: " bSkipC = TRUE; "
+		class: 1
+	}
+	edge: {	sourcename: "unionDeclar"
+		targetname: "CCODE"
+		label: " expect = \fi034expecting '}'\fi034;                      \n                     bSkipC = FALSE; "
+		class: 1
+	}
+	edge: {	sourcename: "unionDeclar"
+		targetname: "TCLOSEBRACES"
+		label: "{ node *tmpptr1 = mknode(unionDeclar);\n                     node *tmpptr2 = mkleaf(TUNION, NULL, NULL);\n                     node *tmpptr3 = mkleaf(TOPENBRACES, NULL, NULL);\n                     node *tmpptr4 = mkleaf(CCODE, NULL, $5);\n                     node *tmpptr5 = mkleaf(TCLOSEBRACES, NULL, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     appendchld(tmpptr1, tmpptr3);\n                     appendchld(tmpptr1, tmpptr4);\n                     appendchld(tmpptr1, tmpptr5);\n                     $$ = tmpptr1;                     \n                     pdebug(DPARSEDBG, \fi034matched unionDeclar - \fi034\n                        \fi034TUNION TOPENBRACES struct TCLOSEBRACES\fi034); \n                     expect = \fi034expecting a yacc declaration or \fi092\fi037{ or \fi092\fi037\fi092\fi037\fi034; }"
+		class: 1
+	}
+	node: {	title: "bisonDeclar"
+		label: "bisonDeclar"
+		/* number of buckets = 11 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "bisonDeclar"
+		targetname: "TSTART"
+		label: " expect = \fi034expecting identifier\fi034; "
+		class: 1
+	}
+	edge: {	sourcename: "bisonDeclar"
+		targetname: "yaccIdentifier"
+		label: "{ node *tmpptr1 = mknode(bisonDeclar);\n                     node *tmpptr2 = mkleaf(TSTART, NULL, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     appendchld(tmpptr1, $3);\n                     $$ = tmpptr1;\n                     expect = \fi034expecting a yacc declaration or \fi092\fi037{ or \fi092\fi037\fi092\fi037\fi034;\n                     pdebug(DPARSEDBG, \fi034matched bisonDeclar - \fi034\n                        \fi034TSTART yaccIdentifier\fi034); }"
+		class: 1
+	}
+	edge: {	sourcename: "bisonDeclar"
+		targetname: "unionDeclar"
+		label: "{ node *tmpptr = mknode(bisonDeclar);\n                     appendchld(tmpptr, $1);\n                     $$ = tmpptr;\n                     pdebug(DPARSEDBG, \fi034matched bisonDeclar - unionDeclar\fi034); \n                     expect = \fi034expecting a yacc declaration or \fi092\fi037{ or \fi092\fi037\fi092\fi037\fi034; }"
+		class: 2
+	}
+	edge: {	sourcename: "bisonDeclar"
+		targetname: "TPURE_PARSER"
+		label: "{ node *tmpptr1 = mknode(bisonDeclar);\n                     node *tmpptr2 = mkleaf(TPURE_PARSER, NULL, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     $$ = tmpptr1;\n                     pdebug(DPARSEDBG, \fi034matched bisonDeclar - TPURE_PARSER\fi034); \n                     expect = \fi034expecting a yacc declaration or \fi092\fi037{ or \fi092\fi037\fi092\fi037\fi034; }"
+		class: 3
+	}
+	edge: {	sourcename: "bisonDeclar"
+		targetname: "TSEMANTIC_PARSER"
+		label: "{ node *tmpptr1 = mknode(bisonDeclar);\n                     node *tmpptr2 = mkleaf(TSEMANTIC_PARSER, NULL, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     $$ = tmpptr1;\n                     pdebug(DPARSEDBG, \fi034matched bisonDeclar - \fi034\n                                       \fi034TSEMANTIC_PARSER\fi034); \n                     expect = \fi034expecting a yacc declaration or \fi092\fi037{ or \fi092\fi037\fi092\fi037\fi034; }"
+		class: 4
+	}
+	edge: {	sourcename: "bisonDeclar"
+		targetname: "TEXPECT"
+		label: " expect = \fi034expecting number\fi034; "
+		class: 5
+	}
+	edge: {	sourcename: "bisonDeclar"
+		targetname: "TNUM"
+		label: "{ node *tmpptr1 = mknode(bisonDeclar);\n                     node *tmpptr2 = mkleaf(TEXPECT, NULL, NULL);\n                     node *tmpptr3 = mkleaf(TNUM, $3, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     appendchld(tmpptr1, tmpptr3);\n                     $$ = tmpptr1;\n                     $3->type = symtype_tnum;\n                     pdebug(DPARSEDBG, \fi034matched bisonDeclar - \fi034\n                                       \fi034TEXPECT TNUM\fi034); \n                     expect = \fi034expecting a yacc declaration or \fi092\fi037{ or \fi092\fi037\fi092\fi037\fi034; }"
+		class: 5
+	}
+	edge: {	sourcename: "bisonDeclar"
+		targetname: "TTHONG"
+		label: "{ node *tmpptr1 = mknode(bisonDeclar);\n                     node *tmpptr2 = mkleaf(TTHONG, NULL, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     $$ = tmpptr1;\n                     pdebug(DPARSEDBG, \fi034matched bisonDeclar - TTHONG\fi034); \n                     expect = \fi034expecting a yacc declaration or \fi092\fi037{ or \fi092\fi037\fi092\fi037\fi034; }"
+		class: 6
+	}
+	edge: {	sourcename: "bisonDeclar"
+		targetname: "rword"
+		label: " expect = \fi034expecting TLT or identifier\fi034; "
+		class: 7
+	}
+	edge: {	sourcename: "bisonDeclar"
+		targetname: "tag"
+		label: " expect = \fi034expecting identifier\fi034; "
+		class: 7
+	}
+	edge: {	sourcename: "bisonDeclar"
+		targetname: "nlist"
+		label: "{ node *tmpptr = mknode(bisonDeclar);\n                     appendchld(tmpptr, $1);\n                     appendchld(tmpptr, $3);\n                     appendchld(tmpptr, $5);\n                     $$ = tmpptr;\n                     pdebug(DPARSEDBG, \fi034matched bisonDeclar - \fi034\n                                       \fi034rword tag nlist\fi034); \n                     expect = \fi034expecting a yacc declaration or \fi092\fi037{ or \fi092\fi037\fi092\fi037\fi034; }"
+		class: 7
+	}
+	node: {	title: "tailsection"
+		label: "tailsection"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	node: {	title: "rulesection"
+		label: "rulesection"
+		/* number of buckets = 1 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "rulesection"
+		targetname: "rules"
+		label: "{ node *tmpptr = mknode(rulesection);\n                     appendchld(tmpptr, $1);\n                     $$ = tmpptr;\n                     pdebug(DPARSEDBG, \fi034matched rulessection - rules\fi034); \n                     expect = \fi034expecting \fi092\fi037\fi092\fi037\fi034; }"
+		class: 1
+	}
+	node: {	title: "productions"
+		label: "productions"
+		/* number of buckets = 4 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "productions"
+		targetname: "production"
+		label: "{ node *tmpptr = mknode(productions);\n                     appendchld(tmpptr, $1);\n                     $$ = tmpptr;\n                     pdebug(DPARSEDBG, \fi034matched productions - production\fi034); \n                     expect = \fi034expecting ';'\fi034; }"
+		class: 1
+	}
+	edge: {	sourcename: "productions"
+		targetname: "productions"
+		label: " expect = \fi034expecting '|'\fi034; "
+		class: 2
+	}
+	edge: {	sourcename: "productions"
+		targetname: "TPIPE"
+		label: " expect = \fi034expecting action, identifier or character \fi034\n                              \fi034constant\fi034; "
+		class: 2
+	}
+	edge: {	sourcename: "productions"
+		targetname: "production"
+		label: "{ node *tmpptr1 = mknode(productions);\n                     node *tmpptr2 = mkleaf(TPIPE, NULL, NULL);\n                     appendchld(tmpptr1, $1);\n                     appendchld(tmpptr1, tmpptr2);\n                     appendchld(tmpptr1, $5);\n                     $$ = tmpptr1;\n                     pdebug(DPARSEDBG, \fi034matched productions - productions \fi034\n                                       \fi034TPIPE production\fi034);\n                     expect = \fi034expecting ';'\fi034; }"
+		class: 2
+	}
+	node: {	title: "bisonDeclars"
+		label: "bisonDeclars"
+		/* number of buckets = 2 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "bisonDeclars"
+		targetname: "bisonDeclar"
+		label: "{ node *tmpptr = mknode(bisonDeclars);\n                     appendchld(tmpptr, $1);\n                     $$ = tmpptr; \n                     expect = \fi034expecting a yacc declaration or \fi092\fi037{ or \fi092\fi037\fi092\fi037\fi034;\n                     pdebug(DPARSEDBG, \fi034matched bisonDeclars - \fi034\n                                       \fi034bisonDeclar\fi034); }"
+		class: 1
+	}
+	edge: {	sourcename: "bisonDeclars"
+		targetname: "CDeclar"
+		label: "{ node *tmpptr = mknode(bisonDeclars);\n                     appendchld(tmpptr, $1); \n                     $$ = tmpptr; \n                     expect = \fi034expecting a yacc declaration or \fi092\fi037{ or \fi092\fi037\fi092\fi037\fi034;\n                     pdebug(DPARSEDBG, \fi034matched bisonDeclars - CDeclar\fi034); }"
+		class: 2
+	}
+	node: {	title: "STRING_LITERAL"
+		label: "STRING_LITERAL"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "TSEMANTIC_PARSER"
+		label: "TSEMANTIC_PARSER"
+		/* number of buckets = 0 */
+		/* bUsed = 1 */
+		/* type = 0 */
+	}
+	node: {	title: "yaccIdentifier"
+		label: "yaccIdentifier"
+		/* number of buckets = 2 */
+		/* bUsed = 1 */
+		/* type = 1 */
+	}
+	edge: {	sourcename: "yaccIdentifier"
+		targetname: "TIDENT"
+		label: "{ node *tmpptr1 = mknode(yaccIdentifier);\n                     node *tmpptr2 = mkleaf(TIDENT, $1, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     $$ = tmpptr1;\n                     pdebug(DPARSEDBG, \fi034matched yaccIdentifier - TIDENT\fi034); \n                     expect = \fi034\fi034; }"
+		class: 1
+	}
+	edge: {	sourcename: "yaccIdentifier"
+		targetname: "TNT"
+		label: "{ node *tmpptr1 = mknode(yaccIdentifier);\n                     node *tmpptr2 = mkleaf(TNT, $1, NULL);\n                     appendchld(tmpptr1, tmpptr2);\n                     $$ = tmpptr1;\n                     pdebug(DPARSEDBG, \fi034matched yaccIdentifier - TNT\fi034); \n                     expect = \fi034\fi034; }"
+		class: 2
+	}
+
+
+}
