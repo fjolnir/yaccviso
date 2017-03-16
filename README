@@ -19,7 +19,7 @@
 
 /* file:        README                                                  
  * YACCVISO                                                                  
- * author:      Leon Aaron Kaplan, e9325704@student.tuwien.ac.at 
+ * author:      L. Aaron Kaplan, aaron@lo-res.org 
  * date:                                                                     
  * last mod.:                                                                
  * descr.:                                                                   
@@ -139,8 +139,8 @@ theses conditionals.
 5. WHERE TO OBTAIN YACCVISO?
 ============================
 
-Get it from my Web page: http://mars.tuwien.ac.at/~jjl or request it
-via email: lkaplan@mips.complang.tuwien.ac.at or jjl@mars.tuwien.ac.at.
+Get it from my Web page: https://github.com/aaronkaplan/yaccviso. 
+(I appreciate git pull requests in case you find any errors).
 
 
 6. INSTALLATION
